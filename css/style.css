@@ -9,6 +9,44 @@ body {
   color: inherit;        /* Inherit color from parent */
 }
 
+/* navbar styles.................................................*/
+.nav-link.active {
+color: rgb(0, 0, 0) !important;
+font-weight: bold;
+}
+
+/* whats app button */
+.whatsapp_float {
+position: fixed;
+width: 60px;
+height: 60px;
+bottom: 20px;
+right: 20px;
+background-color: #25D366; /* WhatsApp green */
+color: white;
+font-size: 28px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+z-index: 1000;
+transition: transform 0.3s ease-in-out;
+}
+
+.whatsapp_float:hover {
+transform: scale(1.1);
+}
+
+.navbar-brand img {
+  max-height: 80px; /* adjust as needed */
+}
+
+
+
+
+
+
 /* Ensure header elements stack correctly */
 .header {
   position: relative;
@@ -363,6 +401,11 @@ body {
   .social-media-icons a:hover i {
     color: white; /* Change to your desired hover color */
 
+  }
+
+  .footer-logo{
+    max-height: 60px; /* adjust as needed */
+    filter: brightness(0) invert(1); /* makes logo white */
   }
 
 
