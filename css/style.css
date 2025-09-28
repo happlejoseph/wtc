@@ -9,43 +9,70 @@ body {
   color: inherit;        /* Inherit color from parent */
 }
 
-/* navbar styles.................................................*/
-.nav-link.active {
-color: rgb(0, 0, 0) !important;
-font-weight: bold;
+/* WhatsApp floating button */
+.whatsapp_float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  font-size: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* whats app button */
-.whatsapp_float {
-position: fixed;
-width: 60px;
-height: 60px;
-bottom: 20px;
-right: 20px;
-background-color: #25D366; /* WhatsApp green */
-color: white;
-font-size: 28px;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-z-index: 1000;
-transition: transform 0.3s ease-in-out;
+/* Pulse effect using ::after */
+.whatsapp_float::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  background-color: rgba(37, 211, 102, 0.5); /* lighter green */
+  animation: pulse 2s infinite;
+  z-index: -1; /* behind the button */
+}
+
+/* Keyframes for pulse */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
 }
 
 .whatsapp_float:hover {
 transform: scale(1.1);
 }
 
-.navbar-brand img {
-  max-height: 50px; /* adjust as needed */
+/* navbar styles.................................................*/
+.nav-link.active {
+color: rgb(0, 0, 0) !important;
+font-weight: bold;
 }
 
 
 
-
-
+.navbar-brand img {
+  max-height: 50px; /* adjust as needed */
+}
 
 /* Ensure header elements stack correctly */
 .header {
@@ -133,6 +160,13 @@ transform: scale(1.1);
     font-size: 1rem;
     color: #007bff;
   }
+  /* On mobile: tap/active also moves the circle */
+@media (max-width: 768px) {
+  .hero.btn-custom:active .icon-circle {
+    transform: translateX(6px);
+    transition: transform 0.3s ease-in-out;
+  }
+}
 
 
 
@@ -174,6 +208,14 @@ transform: scale(1.1);
     transition: transform 0.3s ease-in-out;
   }
 
+  /* On mobile: tap/active also moves the circle */
+@media (max-width: 768px) {
+  .hero.btn-custom-2:active .icon-circle {
+    transform: translateX(6px);
+    transition: transform 0.3s ease-in-out;
+  }
+}
+
 
 /* Adjust content placement for large screens */
 @media (min-width: 768px) {
@@ -213,6 +255,21 @@ transform: scale(1.1);
 .stats-box:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+/* Apply hover effect only on screens ≥768px */
+@media (min-width: 768px) {
+  .stats-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  }
+}
+/* Tap effect only on mobile */
+@media (max-width: 767px) {
+  .stats-box:active {
+    transform: scale(0.97); /* slight shrink on tap */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
 }
 
 /*..................right side...................*/
@@ -271,6 +328,21 @@ transform: scale(1.1);
   transform: translateY(-5px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   }
+  /* Only apply hover on screens >= 768px */
+@media (min-width: 768px) {
+  .feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  }
+}
+/* Tap effect only on mobile */
+@media (max-width: 767px) {
+  .feature-box:active {
+    transform: scale(0.97); /* slight shrink on tap */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+}
  /* .......................................................................why section styles end ....................................................*/
 
 
@@ -430,41 +502,31 @@ transform: scale(1.1);
 
 
 
-  /*...about section...*/
-  .imageReveal {
+  /*.....image reveal...*/
+  /* .imageReveal {
     animation: imageReveal both;
     animation-timeline: view(70% 15%);
-  }
-  @keyframes imageReveal {
-    from {
-      filter: saturate(0) contrast(4) brightness(.1) blur(5px);
-      opacity: 0;
-      scale: .95;
-      translate: 0 4rem;
-    }
-    to {
-      filter: none;
-      opacity: 1;
-      scale: 1;
-      translate: 0 0;
-    }
-  }
+  } */
+  /* Disable animation on mobile */
 
-  .why-section .imageReveal {
+  /* .why-section .imageReveal {
     animation: imageReveal both;
     animation-timeline: view(80% 10%);
-  }
-  @keyframes imageReveal {
-    from {
-      filter: saturate(0) contrast(4) brightness(.1) blur(5px);
-      opacity: 0;
-      scale: .95;
-      translate: 0 4rem;
-    }
-    to {
-      filter: none;
-      opacity: 1;
-      scale: 1;
-      translate: 0 0;
-    }
-  }
+  } */
+  /* Disable animation on mobile */
+
+
+
+
+
+  /*.....image reveal...*/
+.imageReveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease; /* smooth fade + move */
+}
+
+.imageReveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
