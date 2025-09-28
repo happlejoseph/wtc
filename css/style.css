@@ -530,3 +530,10 @@ font-weight: bold;
   opacity: 1;
   transform: translateY(0);
 }
+@media (max-width: 768px) {
+  .imageReveal {
+    opacity: 1 !important; /* fully visible */
+    transform: translateY(0) !important; /* no movement */
+    transition: none !important; /* no animation */
+  }
+}
